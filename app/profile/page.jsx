@@ -24,10 +24,12 @@ const MyProfile = () => {
   }, [session?.user.id]);
 
   const handleEdit = (post) => {
+    //letting the user go to a page where there is a proper form for editing
     router.push(`/update-prompt?id=${post._id}`);
   };
 
   const handleDelete = async (post) => {
+    //this confirm is built into the browser API
     const hasConfirmed = confirm(
       "Are you sure you want to delete this prompt?"
     );
@@ -49,8 +51,8 @@ const MyProfile = () => {
 
   return (
     <Profile
-      name='My'
-      desc='Welcome to your personalized profile page. Share your exceptional prompts and inspire others with the power of your imagination'
+      name="My"
+      desc="Welcome to your personalized profile page. Share your exceptional prompts and inspire others with the power of your imagination"
       data={myPosts}
       handleEdit={handleEdit}
       handleDelete={handleDelete}

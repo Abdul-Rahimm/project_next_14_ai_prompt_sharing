@@ -3,9 +3,11 @@ import { connectToDB } from "@utils/database";
 
 export const GET = async (request, { params }) => {
     try {
-        await connectToDB()
+        await connectToDB() //connect to DB
 
+        //using findById..fetch the prompts of the uer
         const prompt = await Prompt.findById(params.id).populate("creator")
+        
         if (!prompt) return new Response("Prompt Not Found", { status: 404 });
 
         return new Response(JSON.stringify(prompt), { status: 200 })
@@ -16,10 +18,11 @@ export const GET = async (request, { params }) => {
 }
 
 export const PATCH = async (request, { params }) => {
+    //when we want to update... we are going to pass the current prompt and tag
     const { prompt, tag } = await request.json();
 
     try {
-        await connectToDB();
+        await connectToDB();    //always first have to connect to the DB
 
         // Find the existing prompt by ID
         const existingPrompt = await Prompt.findById(params.id);
@@ -32,6 +35,7 @@ export const PATCH = async (request, { params }) => {
         existingPrompt.prompt = prompt;
         existingPrompt.tag = tag;
 
+        //to save to the database
         await existingPrompt.save();
 
         return new Response("Successfully updated the Prompts", { status: 200 });

@@ -7,10 +7,12 @@ import Form from "@components/Form";
 
 const UpdatePrompt = () => {
   const router = useRouter();
+
+  //using the searchParams
   const searchParams = useSearchParams();
   const promptId = searchParams.get("id");
 
-  const [post, setPost] = useState({ prompt: "", tag: "", });
+  const [post, setPost] = useState({ prompt: "", tag: "" });
   const [submitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
@@ -26,6 +28,7 @@ const UpdatePrompt = () => {
 
     if (promptId) getPromptDetails();
   }, [promptId]);
+  // ^^ whenever the promptID changes
 
   const updatePrompt = async (e) => {
     e.preventDefault();
@@ -54,7 +57,7 @@ const UpdatePrompt = () => {
 
   return (
     <Form
-      type='Edit'
+      type="Edit"
       post={post}
       setPost={setPost}
       submitting={submitting}
