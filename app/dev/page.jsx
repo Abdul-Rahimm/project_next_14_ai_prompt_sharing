@@ -30,7 +30,8 @@ export default function ArticlesPage() {
   return (
     <div className="app">
       <h1 className="head_text">Articles</h1>
-      <ul className="list-none p-0">
+
+      <ul className=" sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid gap-5 p-5">
         {articles.map((article) => (
           <li key={article.id} className="prompt_card">
             <h2 className="text-xl font-bold mb-2">
